@@ -232,10 +232,13 @@ const handleRequest = frames(async (ctx) => {
           Go back
         </Button>,
         <Button
-          action="post"
-          target={`/bookings?fid=${ctx.searchParams[
+          action="tx"
+          target={`/txdata?fid=${ctx.searchParams[
             "fid"
-          ].toString()}&ownerName=${ownerName}&ownerimg=${ownerimg}&d=${d}&datefixed=true&t=${t}&timefixed=true&confirm=true`}
+          ].toString()}&ownerName=${ownerName}&ownerimg=${ownerimg}&d=${d}&datefixed=true&t=${t}&timefixed=true&confirm=true&userfid=${
+            ctx.message!.requesterFid
+          }&owner=${ownerFID}&duration=${duration}`}
+          post_url={`/bookings`}
         >
           Confirm
         </Button>,
