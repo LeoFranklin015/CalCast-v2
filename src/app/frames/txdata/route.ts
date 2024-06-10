@@ -25,7 +25,7 @@ export async function POST(
       args: [owner, user, time, 0, date, 4, 2024],
     });
     return NextResponse.json({
-      chainId: "eip155:10", // OP Mainnet 10
+      chainId: "eip155:84532", // OP Mainnet 10
       method: "eth_sendTransaction",
       params: {
         abi: ABI as Abi,
@@ -48,7 +48,7 @@ export async function POST(
       ],
     });
     return NextResponse.json({
-      chainId: "eip155:10", // OP Mainnet 10
+      chainId: "eip155:84532", // OP Mainnet 10
       method: "eth_sendTransaction",
       params: {
         abi: ABI as Abi,
