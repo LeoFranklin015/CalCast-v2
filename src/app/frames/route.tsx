@@ -24,7 +24,9 @@ const handleRequest = frames(async (ctx: any) => {
     buttons: [
       <Button
         action="post"
-        target={`/dashboard?fid=${ctx.searchParams["fid"].toString()}`}
+        target={`/bookings?fid=${ctx.searchParams[
+          "fid"
+        ].toString()}&ownerName=${ownerName}&ownerimg=${ownerimg}&d=0`}
       >
         Book now
       </Button>,
