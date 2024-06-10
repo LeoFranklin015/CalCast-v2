@@ -4,6 +4,7 @@ import { getNextSixDates } from "@/lib/date";
 import { Date } from "@/components/frames/Date";
 import { createTimeSlots, gettimeslot } from "@/lib/time";
 import { Time } from "@/components/frames/Time";
+import { Confirm } from "@/components/frames/Confirm";
 
 const handleRequest = frames(async (ctx) => {
   const encodedString = ctx.searchParams["fid"].toString();
@@ -16,6 +17,7 @@ const handleRequest = frames(async (ctx) => {
   const dates = getNextSixDates();
 
   const d = ctx.searchParams["d"];
+  const t = ctx.searchParams["t"];
   if (ctx.searchParams["datefixed"] == undefined) {
     return {
       image: (
@@ -118,6 +120,40 @@ const handleRequest = frames(async (ctx) => {
           }`}
         >
           ➡️
+        </Button>,
+      ],
+    };
+  } else if (ctx.searchParams["confirm"] == undefined) {
+    const timeSlots = await gettimeslot(ownerFID);
+    const timeslots = createTimeSlots(timeSlots);
+    return {
+      image: (
+        <Confirm
+          ownerName={ownerName}
+          duration={duration}
+          ownerimg={ownerimg}
+          dates={dates}
+          d={d}
+          t={t}
+          timeslots={timeslots}
+        />
+      ),
+      buttons: [
+        <Button
+          action="post"
+          target={`/bookings?fid=${ctx.searchParams[
+            "fid"
+          ].toString()}&ownerName=${ownerName}&ownerimg=${ownerimg}&d=${d}&datefixed=true&t=${t}`}
+        >
+          Go back
+        </Button>,
+        <Button
+          action="post"
+          target={`/bookings?fid=${ctx.searchParams[
+            "fid"
+          ].toString()}&ownerName=${ownerName}&ownerimg=${ownerimg}&d=${d}&datefixed=true&t=${t}&timefixed=true&confirm=true`}
+        >
+          Confirm
         </Button>,
       ],
     };
