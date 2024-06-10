@@ -8,6 +8,7 @@ const handleRequest = frames(async (ctx) => {
     ),
     buttons: [
       <Button
+        key={1}
         action="link"
         target={`https://www.onceupon.gg/tx/${ctx.message?.transactionId}`}
       >
