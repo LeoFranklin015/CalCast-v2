@@ -249,7 +249,7 @@ const handleRequest = frames(async (ctx) => {
           ].toString()}&ownerName=${ownerName}&ownerimg=${ownerimg}&d=${d}&datefixed=true&t=${t}&timefixed=true&confirm=true&userfid=${
             ctx.message!.requesterFid
           }&owner=${ownerFID}&duration=${duration}`}
-          post_url={`/bookings`}
+          post_url={`/tx-success`}
         >
           Confirm
         </Button>,
