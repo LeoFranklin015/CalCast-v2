@@ -40,6 +40,7 @@ const handleRequest = frames(async (ctx) => {
       ),
       buttons: [
         <Button
+          key={1}
           action="post"
           target={`/bookings?fid=${ctx.searchParams[
             "fid"
@@ -50,6 +51,7 @@ const handleRequest = frames(async (ctx) => {
           ⬅️
         </Button>,
         <Button
+          key={2}
           action="post"
           target={`/bookings?fid=${ctx.searchParams[
             "fid"
@@ -58,6 +60,7 @@ const handleRequest = frames(async (ctx) => {
           {`${dates[parseInt(d)]} July`}
         </Button>,
         <Button
+          key={3}
           action="post"
           target={`/bookings?fid=${ctx.searchParams[
             "fid"
@@ -91,6 +94,7 @@ const handleRequest = frames(async (ctx) => {
       ),
       buttons: [
         <Button
+          key={1}
           action="post"
           target={`/bookings?fid=${ctx.searchParams[
             "fid"
@@ -99,6 +103,7 @@ const handleRequest = frames(async (ctx) => {
           Go Back
         </Button>,
         <Button
+          key={2}
           action="post"
           target={`/bookings?fid=${ctx.searchParams[
             "fid"
@@ -111,6 +116,7 @@ const handleRequest = frames(async (ctx) => {
           ⬅️
         </Button>,
         <Button
+          key={3}
           action="post"
           target={`/bookings?fid=${ctx.searchParams[
             "fid"
@@ -119,6 +125,7 @@ const handleRequest = frames(async (ctx) => {
           {`${timeslots[parseInt(t)]}`}
         </Button>,
         <Button
+          key={4}
           action="post"
           target={`/bookings?fid=${ctx.searchParams[
             "fid"
@@ -153,6 +160,7 @@ const handleRequest = frames(async (ctx) => {
 
       buttons: [
         <Button
+          key={1}
           action="post"
           target={`/bookings?fid=${ctx.searchParams[
             "fid"
@@ -192,6 +200,7 @@ const handleRequest = frames(async (ctx) => {
       ),
       buttons: [
         <Button
+          key={1}
           action="post"
           target={
             res.isValidated
@@ -224,6 +233,7 @@ const handleRequest = frames(async (ctx) => {
       ),
       buttons: [
         <Button
+          key={1}
           action="post"
           target={`/bookings?fid=${ctx.searchParams[
             "fid"
@@ -232,6 +242,7 @@ const handleRequest = frames(async (ctx) => {
           Go back
         </Button>,
         <Button
+          key={2}
           action="tx"
           target={`/txdata?fid=${ctx.searchParams[
             "fid"
@@ -257,6 +268,7 @@ const handleRequest = frames(async (ctx) => {
       ),
       buttons: [
         <Button
+          key={1}
           action="post"
           target={`/bookings?fid=${ctx.searchParams[
             "fid"
@@ -267,6 +279,7 @@ const handleRequest = frames(async (ctx) => {
           ⬅️
         </Button>,
         <Button
+          key={2}
           action="post"
           target={`/bookings?fid=${ctx.searchParams[
             "fid"
@@ -275,6 +288,7 @@ const handleRequest = frames(async (ctx) => {
           {`Change Date`}
         </Button>,
         <Button
+          key={3}
           action="post"
           target={`/bookings?fid=${ctx.searchParams[
             "fid"

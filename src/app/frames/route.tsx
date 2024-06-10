@@ -23,6 +23,7 @@ const handleRequest = frames(async (ctx: any) => {
     ),
     buttons: [
       <Button
+        key={1}
         action="post"
         target={`/bookings?fid=${ctx.searchParams[
           "fid"
@@ -30,7 +31,7 @@ const handleRequest = frames(async (ctx: any) => {
       >
         Book now
       </Button>,
-      <Button action="link" target="https://calcast.vercel.app">
+      <Button key={2} action="link" target="https://calcast.vercel.app">
         My CalFrame
       </Button>,
     ],
