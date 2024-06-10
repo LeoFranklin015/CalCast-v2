@@ -13,7 +13,7 @@ const handleRequest = frames(async (ctx: any) => {
 
   const data = await getProfileData(ownerFID);
 
-  const ownerName = data.Socials.Social[0].profileDisplayName;
+  const ownerName = data.Socials.Social[0].profileName;
   const ownerimg = data.Socials.Social[0].profileImage;
   const ownerbio = data.Socials.Social[0].profileBio;
 

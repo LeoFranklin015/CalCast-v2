@@ -21,7 +21,8 @@ export const Time = ({
 
         width: "100%",
         height: "100%",
-        backgroundColor: "black",
+        background: "linear-gradient(to bottom ,#401d53  ,#1f1d22 )",
+
         padding: 70,
         fontSize: 24,
         fontFamily: "Montserrat",
@@ -38,14 +39,14 @@ export const Time = ({
           style={{
             display: "flex",
             justifyContent: "space-between",
-            alignItems: "center",
+            // alignItems: "center",
           }}
         >
           <div
             style={{
               color: "white",
               fontSize: 48,
-              fontFamily: "Montserrat",
+              fontFamily: "dm-sans",
             }}
           >
             {`CalCast/@${ownerName}`}
@@ -58,8 +59,8 @@ export const Time = ({
           >
             <img
               src={ownerimg}
-              width={92}
-              height={92}
+              width={164}
+              height={164}
               alt="ownerImage"
               style={{
                 borderRadius: "50%",
@@ -73,9 +74,9 @@ export const Time = ({
         style={{
           display: "flex",
           color: "white",
-          fontSize: 52,
-          fontStyle: "bold",
-          marginTop: -40,
+          fontSize: 64,
+          fontStyle: "extra-bold",
+          marginTop: -120,
         }}
       >
         {duration} min
@@ -100,9 +101,11 @@ export const Time = ({
           style={{
             color: "white",
             display: "flex",
-            gap: 35,
+
             alignItems: "center",
-            justifyContent: "flex-start",
+            // justifyContent: "flex-start",
+            justifyContent: "space-between",
+
             marginTop: 10,
           }}
         >

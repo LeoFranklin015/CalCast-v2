@@ -1,3 +1,11 @@
+const svgData = `
+<svg width="15" height="15" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path class="fill-current" fill-rule="evenodd" d="M14.804.333a1.137 1.137 0 0 0-1.608 0L.333 13.196a1.137 1.137 0 0 0 0 1.608l12.863 12.863a1.137 1.137 0 0 0 1.608 0l12.863-12.863a1.137 1.137 0 0 0 0-1.608L14.804.333ZM14 5.159c0-.89-1.077-1.337-1.707-.707l-8.134 8.134a2 2 0 0 0 0 2.828l8.134 8.134c.63.63 1.707.184 1.707-.707V5.159Z" clip-rule="nonzero"></path>
+</svg>
+`;
+
+const svgDataUrl = `data:image/svg+xml;base64,${btoa(svgData)}`;
+
 export const Landing = ({
   ownerName,
   ownerimg,
@@ -17,10 +25,12 @@ export const Landing = ({
 
         width: "100%",
         height: "100%",
-        backgroundColor: "black",
-        padding: 100,
+        // backgroundColor: "white",
+        background: "linear-gradient(to bottom ,#401d53  ,#1f1d22 )",
+
+        padding: 60,
         fontSize: 24,
-        fontFamily: "Montserrat",
+        // fontFamily: "dm-sans",
       }}
     >
       <div
@@ -34,14 +44,15 @@ export const Landing = ({
           style={{
             display: "flex",
             justifyContent: "space-between",
-            alignItems: "center",
+            // alignItems: "center",
           }}
         >
           <div
             style={{
               color: "white",
-              fontSize: 88,
-              fontFamily: "Montserrat",
+              fontSize: 128,
+              fontFamily: "'DM Sans', sans-serif",
+              fontWeight: 700,
             }}
           >
             CalCast
@@ -54,8 +65,8 @@ export const Landing = ({
           >
             <img
               src={ownerimg}
-              width={128}
-              height={128}
+              width={220}
+              height={220}
               alt="ownerImage"
               style={{
                 borderRadius: "50%",
@@ -76,9 +87,12 @@ export const Landing = ({
         <div
           style={{
             display: "flex",
-            fontSize: 60,
+            fontSize: 48,
             color: "white",
+
+            fontWeight: 700,
           }}
+          // tw="font-dm-sans flex font-weight:700 text-white text-4xl"
         >
           Meet @{ownerName}
         </div>
@@ -93,28 +107,51 @@ export const Landing = ({
           <div
             style={{
               display: "flex",
-              fontSize: 48,
+              fontSize: 72,
+              fontFamily: "dm-sans",
+              fontWeight: 700,
             }}
           >
-            {duration} min
+            {duration} mins
           </div>
           <div
             style={{
               display: "flex",
-              justifyContent: "center",
+              flexDirection: "column",
+              // justifyContent: "flex-end",
               alignItems: "center",
-              backgroundColor: "#4CAF50",
               color: "white",
-              paddingLeft: 20,
-              paddingRight: 20,
-              borderRadius: "15px",
-              border: "2px solid white",
               fontSize: "48px", // Decrease font-size
-              fontWeight: "bold",
-              height: 60,
             }}
           >
-            ~ Free
+            <div
+              style={{
+                display: "flex",
+                fontSize: 32,
+                color: "grey",
+                alignSelf: "flex-end",
+                fontWeight: "semibold",
+              }}
+            >
+              Price
+            </div>
+            <div
+              style={{
+                display: "flex",
+                fontSize: 48,
+                fontWeight: "bold",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <img
+                src="https://warpcast.com/~/images/Warp.png"
+                alt="icon"
+                width="60"
+                height="60"
+              />
+              3500 warps
+            </div>
           </div>
         </div>
       </div>

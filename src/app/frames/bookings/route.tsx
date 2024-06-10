@@ -5,6 +5,15 @@ import { Date } from "@/components/frames/Date";
 import { createTimeSlots, gettimeslot } from "@/lib/time";
 import { Time } from "@/components/frames/Time";
 import { Confirm } from "@/components/frames/Confirm";
+import {
+  FrameRatio,
+  generateCaptchaChallenge,
+  GenerateCaptchaChallengeInput,
+  GenerateCaptchaChallengeOutput,
+  validateCaptchaChallenge,
+  ValidateCaptchaChallengeInput,
+  ValidateCaptchaChallengeOutput,
+} from "@airstack/frames";
 
 const handleRequest = frames(async (ctx) => {
   const encodedString = ctx.searchParams["fid"].toString();
@@ -157,7 +166,48 @@ const handleRequest = frames(async (ctx) => {
         </Button>,
       ],
     };
-  } else {
+  }
+  // else if (ctx.searchParams["captcha"] == undefined) {
+  //   const input: GenerateCaptchaChallengeInput = {
+  //     options: { ratio: FrameRatio._1_91__1, includeImage: true },
+  //   };
+
+  //   const res: GenerateCaptchaChallengeOutput = await generateCaptchaChallenge(
+  //     input
+  //   );
+  //   return {
+  //     image: (
+  //       <div style={{ display: "flex" }}>
+  //         <img src={res.image}></img>
+  //       </div>
+  //     ),
+  //     state: {
+  //       captchaId: res.state.captchaId,
+  //       valueHash: res.state.valueHash,
+  //     },
+  //     // image: res.image,
+  //     buttons: [
+  //       <Button
+  //         action="post"
+  //         target={`/bookings?fid=${ctx.searchParams[
+  //           "fid"
+  //         ].toString()}&duration=${booking["duration"]}&d=${
+  //           booking["d"]
+  //         }&datefixed=true&t=${
+  //           booking["t"]
+  //         }&timefixed=true&captcha=pending&captchaId=${
+  //           res.state.captchaId
+  //         }&hashvalue=${
+  //           res.state.valueHash
+  //         }&name=${ownerName}&img=${ownerimg}&bio=${ownerbio}`}
+  //       >
+  //         Verify
+  //       </Button>,
+  //     ],
+  //     textInput: "Enter the answer",
+  //   };
+  // }
+  else {
     return {
       image: (
         <Date
