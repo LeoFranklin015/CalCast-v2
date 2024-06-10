@@ -132,6 +132,81 @@ const handleRequest = frames(async (ctx) => {
         </Button>,
       ],
     };
+  } else if (ctx.searchParams["captcha"] == undefined) {
+    const input: GenerateCaptchaChallengeInput = {
+      options: { ratio: FrameRatio._1_91__1, includeImage: true },
+    };
+
+    const res: GenerateCaptchaChallengeOutput = await generateCaptchaChallenge(
+      input
+    );
+    return {
+      image: (
+        <div style={{ display: "flex" }}>
+          <img src={res.image}></img>
+        </div>
+      ),
+      state: {
+        captchaId: res.state.captchaId,
+        valueHash: res.state.valueHash,
+      },
+
+      buttons: [
+        <Button
+          action="post"
+          target={`/bookings?fid=${ctx.searchParams[
+            "fid"
+          ].toString()}&ownerName=${ownerName}&ownerimg=${ownerimg}&d=${d}&datefixed=true&t=${t}&timefixed=true&captcha=pending&captchaId=${
+            res.state.captchaId
+          }&hashvalue=${res.state.valueHash}`}
+        >
+          Verify
+        </Button>,
+      ],
+      textInput: "Enter the answer",
+    };
+  } else if (ctx.searchParams["captcha"] == "pending") {
+    const inputText = ctx.message!.inputText || "";
+    const states = ctx.message!.state;
+
+    const state = {
+      captchaId: ctx.searchParams["captchaId"],
+      valueHash: ctx.searchParams["hashvalue"],
+    };
+
+    console.log(`state : ${state}`);
+
+    const input: ValidateCaptchaChallengeInput = {
+      inputText,
+      state,
+    };
+
+    const res: ValidateCaptchaChallengeOutput = await validateCaptchaChallenge(
+      input
+    );
+    return {
+      image: (
+        <div style={{ display: "flex" }}>
+          <img src={res.image}></img>
+        </div>
+      ),
+      buttons: [
+        <Button
+          action="post"
+          target={
+            res.isValidated
+              ? `/bookings?fid=${ctx.searchParams[
+                  "fid"
+                ].toString()}&ownerName=${ownerName}&ownerimg=${ownerimg}&d=${d}&datefixed=true&t=${t}&timefixed=true&captcha=verified`
+              : `/bookings?fid=${ctx.searchParams[
+                  "fid"
+                ].toString()}&ownerName=${ownerName}&ownerimg=${ownerimg}&d=${d}&datefixed=true&t=${t}&timefixed=true`
+          }
+        >
+          {res.isValidated ? "Proceed" : "Try again!"}
+        </Button>,
+      ],
+    };
   } else if (ctx.searchParams["confirm"] == undefined) {
     const timeSlots = await gettimeslot(ownerFID);
     const timeslots = createTimeSlots(timeSlots);
@@ -166,48 +241,7 @@ const handleRequest = frames(async (ctx) => {
         </Button>,
       ],
     };
-  }
-  // else if (ctx.searchParams["captcha"] == undefined) {
-  //   const input: GenerateCaptchaChallengeInput = {
-  //     options: { ratio: FrameRatio._1_91__1, includeImage: true },
-  //   };
-
-  //   const res: GenerateCaptchaChallengeOutput = await generateCaptchaChallenge(
-  //     input
-  //   );
-  //   return {
-  //     image: (
-  //       <div style={{ display: "flex" }}>
-  //         <img src={res.image}></img>
-  //       </div>
-  //     ),
-  //     state: {
-  //       captchaId: res.state.captchaId,
-  //       valueHash: res.state.valueHash,
-  //     },
-  //     // image: res.image,
-  //     buttons: [
-  //       <Button
-  //         action="post"
-  //         target={`/bookings?fid=${ctx.searchParams[
-  //           "fid"
-  //         ].toString()}&duration=${booking["duration"]}&d=${
-  //           booking["d"]
-  //         }&datefixed=true&t=${
-  //           booking["t"]
-  //         }&timefixed=true&captcha=pending&captchaId=${
-  //           res.state.captchaId
-  //         }&hashvalue=${
-  //           res.state.valueHash
-  //         }&name=${ownerName}&img=${ownerimg}&bio=${ownerbio}`}
-  //       >
-  //         Verify
-  //       </Button>,
-  //     ],
-  //     textInput: "Enter the answer",
-  //   };
-  // }
-  else {
+  } else {
     return {
       image: (
         <Date
